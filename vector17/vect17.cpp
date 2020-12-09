@@ -18,3 +18,13 @@ using namespace std;
     void vector::set(int n, double val){
         elem[n]=val;
     }
+    int main(){
+            vector vect = vector(5);
+            int n=1;
+            cout <<vect.size();
+            for (int i = 0; i < vect.size(); ++i){
+                vect.set(i, n++);
+            }
+            cout <<vect.get(2);
+            return 0;
+        }
