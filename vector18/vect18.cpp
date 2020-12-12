@@ -1,14 +1,8 @@
 #include <iostream>
 #include "vect18.h"
 using namespace std;
-    vector::vector(vector&& a)
-        :sz{a.sz}, elem{a.elem}
-    {
-        a.sz=0;
-        a.elem=nullptr;
-    }
-
-    vector& vector::operator=(const vector& a)
+  
+    vector& vector::operator=(const vector& a) ///копирующий оператор
     {
         double*p=new double[a.sz];
         copy(a.elem, a.elem+a.sz, p);
@@ -18,15 +12,21 @@ using namespace std;
         return *this;
     }
 
-    vector::vector(const vector& arg)
+    vector::vector(const vector& arg)           ///копирующее присваивание
         :sz{arg.sz}, elem{new double[arg.sz]}
     {
-        for (int i = 0; i < sz; i++)
-        {
-            this->elem[i] = arg.elem[i];
-        }
+        copy(arg,arg+sz,elem);
     }
-    vector& vector::operator=(vector&& a)
+
+
+    vector::vector(vector&& a)                  ///перемещ. конструктор
+        :sz{a.sz}, elem{a.elem}
+    {
+        a.sz=0;
+        a.elem=nullptr;
+    }
+
+    vector& vector::operator=(vector&& a)           ///перемещающий оператор
     {
         delete[] elem;
         elem=a.elem;
