@@ -41,19 +41,17 @@ public:
         this->elem = nullptr;
         this->space = 0;
     };
-
+    
+    vector(const vector&);
+    vector& operator= (const vector&);
+    vector (vector&& );
+    vector& operator= (vector&&);
+    
     vector(initializer_list<T> lst)
     {
         this->sz = lst.size();
         this->elem = new T[this->sz];
         copy(lst.begin(), lst.end (), this->elem) ;
-    }
-
-    explicit vector(int s)
-    {
-        this->sz =  s;
-        this->space = s;
-        this->elem = new T[s];
     }
 
     int size()
@@ -66,10 +64,7 @@ public:
         delete[] this->elem;
     }
 
-    vector(const vector&);
-    vector& operator= (const vector&);
-    vector (vector&& );
-    vector& operator= (vector&&);
+    
     T& operator [] (int n)
     {
         return this->elem[n];
@@ -84,11 +79,20 @@ public:
     {
         return this->space;
     }
-    void resize(int newsize , T value = T());
-    void push_back (const T& value);
+
 
     T& at (int n);
     const T& at (int n) const;
+    
+    explicit vector(int s)
+    {
+        this->sz =  s;
+        this->space = s;
+        this->elem = new T[s];
+    }
+    
+    void resize(int newsize , T value = T());
+    void push_back (const T& value);
 };
 
 
