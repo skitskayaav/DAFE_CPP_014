@@ -12,7 +12,7 @@ using namespace std;
         return *this;
     }
 
-    vector::vector(const vector& arg)           ///копирующее присваивание
+    vector::vector(const vector& arg)           ///копирующий конструктор
         :sz{arg.sz}, elem{new double[arg.sz]}
     {
         copy(arg,arg+sz,elem);
